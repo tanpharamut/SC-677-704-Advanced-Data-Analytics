@@ -28,6 +28,7 @@
 - [สถานะงาน](#สถานะงาน)
 - [การติดตั้งสภาพแวดล้อม](#การติดตั้งสภาพแวดล้อม)
 - [โครงสร้าง Repository](#โครงสร้าง-repository)
+- [การใช้งาน Git](#การใช้งาน-git)
 - [ตำราและแหล่งอ้างอิง](#ตำราและแหล่งอ้างอิง)
 - [นโยบายการใช้เครื่องมือ AI](#นโยบายการใช้เครื่องมือ-ai)
 
@@ -52,11 +53,10 @@
 
 รายวิชานี้ครอบคลุมงานวิเคราะห์ข้อมูล **ครบวงจร** ตั้งแต่การสร้างสายท่อข้อมูล การประมวลผลข้อมูลมหัตแบบกระจาย การวิเคราะห์ข้อมูลไม่มีโครงสร้างและข้อมูลหลายมิติ การเรียนรู้ของเครื่อง ไปจนถึงการแสดงผลข้อมูล แดชบอร์ด และเว็บแอปพลิเคชันเพื่อนำเสนอผล
 
-```text
- รวบรวมข้อมูล  ──▶  ประมวลผลข้อมูลมหัต  ──▶  วิเคราะห์และสร้างแบบจำลอง  ──▶  นำเสนอผล
- Data pipeline       Hadoop · Spark            NLP · PCA · ML · DL            Viz · Dashboard · Web app
- (Airflow)           (PySpark)                 (scikit-learn · MLlib · Keras)  (Plotly · BI tools · Streamlit)
-```
+| 1. รวบรวมข้อมูล ➜ | 2. ประมวลผลข้อมูลมหัต ➜ | 3. วิเคราะห์และสร้างแบบจำลอง ➜ | 4. นำเสนอผล |
+| :---: | :---: | :---: | :---: |
+| Data pipeline | Hadoop · Spark | NLP · PCA · ML · DL | Viz · Dashboard · Web app |
+| *Airflow* | *PySpark* | *scikit-learn · MLlib · Keras* | *Plotly · BI tools · Streamlit* |
 
 **วัตถุประสงค์รายวิชา**
 
@@ -226,6 +226,149 @@ SC-677-704-Advanced-Data-Analytics/
 | [`dashboard-mini-project/`](dashboard-mini-project) | ไฟล์แดชบอร์ดและสรุปข้อเสนอแนะแก่ผู้ใช้ข้อมูล |
 | [`final-project/`](final-project) | โค้ด รายงาน และสไลด์ของโครงงานประจำวิชา |
 | `data/` | เก็บชุดข้อมูลไว้ในเครื่องเท่านั้น ไฟล์ข้อมูลไม่ถูก commit ขึ้น GitHub |
+
+---
+
+## การใช้งาน Git
+
+คู่มือย่อคำสั่ง Git ที่ใช้บ่อยกับ repo นี้ รันใน Git Bash, PowerShell หรือ Terminal โดยเปิดที่โฟลเดอร์ของ repo
+
+### ภาพรวมการทำงาน
+
+```text
+ Working dir ─add─▶ Staging ─commit─▶ Local repo ─push─▶ GitHub
+      ▲                                                    │
+      └─────────────────────── pull ───────────────────────┘
+```
+
+| พื้นที่ | ความหมาย |
+| --- | --- |
+| **Working directory** | โฟลเดอร์ในเครื่องที่เรากำลังแก้ไฟล์อยู่ |
+| **Staging area** | พื้นที่พักไฟล์ที่เลือกไว้แล้วว่าจะใส่ใน commit ถัดไป |
+| **Local repository** | ประวัติ commit ทั้งหมดที่เก็บในเครื่อง (อยู่ในโฟลเดอร์ซ่อน `.git`) |
+| **Remote (`origin`)** | repo บน GitHub ที่ใช้สำรองงานและซิงก์ระหว่างเครื่อง |
+
+### 1. ตั้งค่าครั้งแรก (ทำครั้งเดียวต่อเครื่อง)
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git --version` | ตรวจว่าติดตั้ง Git แล้วหรือยัง และเป็นเวอร์ชันใด |
+| `git config --global user.name "..."` | ตั้งชื่อผู้เขียนที่จะปรากฏในทุก commit |
+| `git config --global user.email "..."` | ตั้งอีเมลผู้เขียน ควรตรงกับอีเมลบัญชี GitHub เพื่อให้ commit ผูกกับบัญชี |
+| `git config --list` | ดูค่าที่ตั้งไว้ทั้งหมด |
+
+### 2. ดึง repo ลงเครื่อง
+
+```bash
+git clone https://github.com/tanpharamut/SC-677-704-Advanced-Data-Analytics.git
+cd SC-677-704-Advanced-Data-Analytics
+```
+
+`git clone` คัดลอก repo ทั้งหมดพร้อมประวัติจาก GitHub ลงเครื่อง ทำครั้งเดียวต่อเครื่อง
+
+> repo นี้เป็น private ต้องล็อกอิน GitHub ก่อน ด้วย `gh auth login` หรือผ่านหน้าต่าง Git Credential Manager ที่เด้งขึ้นมาตอน clone
+
+### 3. ทำงานประจำวัน
+
+```bash
+git pull                                   # 1. ดึงงานล่าสุดจาก GitHub
+git status                                 # 2. ดูว่าไฟล์ไหนถูกแก้
+git add labs/L1-data-pipeline              # 3. เลือกไฟล์ที่จะบันทึก
+git commit -m "Add L1 data pipeline DAG"   # 4. บันทึกเป็น commit
+git push                                   # 5. ส่งขึ้น GitHub
+```
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git pull` | ดึง commit ใหม่จาก GitHub มารวมกับงานในเครื่อง ควรทำก่อนเริ่มงานทุกครั้ง (เท่ากับ `git fetch` ตามด้วย `git merge`) |
+| `git status` | แสดงสถานะ ได้แก่ ไฟล์ที่แก้ไข ไฟล์ใหม่ที่ Git ยังไม่ติดตาม และไฟล์ที่ add แล้ว |
+| `git diff` | ดูว่าแก้อะไรไปบ้างทีละบรรทัด เฉพาะส่วนที่ยังไม่ add |
+| `git diff --staged` | ดูส่วนที่ add แล้วและกำลังจะเข้า commit |
+| `git add <ไฟล์หรือโฟลเดอร์>` | ย้ายการแก้ไขเข้า staging area เพื่อเตรียม commit |
+| `git add .` | add ทุกไฟล์ที่เปลี่ยนในโฟลเดอร์ปัจจุบัน (ตรวจด้วย `git status` ก่อนเสมอ) |
+| `git commit -m "ข้อความ"` | บันทึกสิ่งที่อยู่ใน staging เป็น commit ใหม่ในเครื่อง พร้อมข้อความอธิบาย |
+| `git push` | ส่ง commit ในเครื่องขึ้น GitHub |
+
+### 4. ดูประวัติ
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git log --oneline` | ดูรายการ commit แบบย่อ บรรทัดละ 1 commit |
+| `git log --oneline --graph --all` | ดูประวัติเป็นแผนภาพ เห็นทุก branch |
+| `git log -- <ไฟล์>` | ดูเฉพาะ commit ที่แก้ไขไฟล์นั้น |
+| `git show <hash>` | ดูรายละเอียดและสิ่งที่เปลี่ยนใน commit นั้น (`<hash>` คือรหัส commit เช่น `0345632`) |
+
+### 5. จัดการไฟล์
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git mv <ที่เดิม> <ที่ใหม่>` | ย้ายหรือเปลี่ยนชื่อไฟล์ Git รู้ว่าเป็นไฟล์เดิม ประวัติจึงไม่หาย |
+| `git rm <ไฟล์>` | ลบไฟล์ออกจากเครื่องและจาก repo ใน commit ถัดไป |
+| `git rm --cached <ไฟล์>` | เลิกติดตามไฟล์ใน repo แต่ยังเก็บไฟล์ไว้ในเครื่อง ใช้เมื่อเผลอ commit ไฟล์ที่ควรอยู่ใน `.gitignore` |
+
+### 6. ยกเลิกและแก้ไข
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git restore <ไฟล์>` | ทิ้งการแก้ไขที่ยังไม่ add กลับไปเป็นเวอร์ชันล่าสุดที่ commit ไว้ ⚠️ กู้คืนไม่ได้ |
+| `git restore --staged <ไฟล์>` | เอาไฟล์ออกจาก staging (ยกเลิก `git add`) การแก้ไขในไฟล์ยังอยู่ |
+| `git commit --amend -m "ข้อความใหม่"` | แก้ข้อความ หรือเพิ่มไฟล์ที่ลืม ลงใน commit ล่าสุด ใช้ได้เฉพาะ commit ที่ **ยังไม่ push** |
+| `git reset --soft HEAD~1` | ยกเลิก commit ล่าสุด แต่เก็บการแก้ไขไว้ใน staging ใช้ได้เฉพาะ commit ที่ **ยังไม่ push** |
+| `git revert <hash>` | สร้าง commit ใหม่ที่ย้อนผลของ commit นั้น เป็นวิธีที่ปลอดภัยสำหรับ commit ที่ push แล้ว |
+
+<details>
+<summary><b>7. Branch</b> แยกทดลองงานโดยไม่กระทบ <code>main</code></summary>
+<br>
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git branch` | แสดง branch ทั้งหมด (`*` คือ branch ที่อยู่ปัจจุบัน) |
+| `git switch -c <ชื่อ>` | สร้าง branch ใหม่และสลับไปทันที |
+| `git switch <ชื่อ>` | สลับไป branch ที่มีอยู่แล้ว เช่น `git switch main` |
+| `git push -u origin <ชื่อ>` | ส่ง branch ใหม่ขึ้น GitHub ครั้งแรก ครั้งต่อไปใช้ `git push` ได้เลย |
+| `git merge <ชื่อ>` | รวมงานจาก branch นั้นเข้ามาใน branch ปัจจุบัน |
+| `git branch -d <ชื่อ>` | ลบ branch ที่ merge แล้ว |
+
+</details>
+
+<details>
+<summary><b>8. Stash และ Remote</b> พักงานชั่วคราว และดูการเชื่อมต่อกับ GitHub</summary>
+<br>
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git stash` | พักงานที่ยังไม่ commit ไว้ชั่วคราว ให้โฟลเดอร์กลับมาสะอาด เช่น ก่อน pull หรือสลับ branch |
+| `git stash list` | ดูรายการงานที่พักไว้ |
+| `git stash pop` | นำงานที่พักไว้ล่าสุดกลับมา |
+| `git remote -v` | ดู URL ของ repo บน GitHub ที่เชื่อมอยู่ |
+| `git fetch` | ดาวน์โหลด commit ใหม่จาก GitHub มาดูก่อน โดยยังไม่รวมเข้ากับงานในเครื่อง |
+
+</details>
+
+### การเขียนข้อความ commit
+
+เขียนเป็นภาษาอังกฤษสั้น ๆ ขึ้นต้นด้วยคำกริยา บอกว่า commit นี้ทำอะไร
+
+| คำขึ้นต้น | ใช้เมื่อ | ตัวอย่าง |
+| --- | --- | --- |
+| `Add` | เพิ่มไฟล์หรืองานใหม่ | `Add L2 PySpark notebook` |
+| `Update` | ปรับปรุงงานเดิม | `Update README checklist` |
+| `Fix` | แก้ข้อผิดพลาด | `Fix missing value handling in L3` |
+| `Move` / `Rename` | ย้ายหรือเปลี่ยนชื่อไฟล์ | `Move course specification into docs folder` |
+| `Remove` | ลบไฟล์ | `Remove unused test notebook` |
+
+### ข้อควรระวัง
+
+- **`git pull` ก่อนเริ่มงานทุกครั้ง** โดยเฉพาะเมื่อทำงานหลายเครื่อง เพื่อลดปัญหางานชนกัน (conflict)
+- **ไฟล์ใหญ่กว่า 100 MB push ไม่ได้** (GitHub จำกัดขนาดต่อไฟล์) ให้เก็บชุดข้อมูลไว้ใน `data/` ซึ่งไม่ถูก commit
+- **ห้าม commit รหัสผ่านหรือ API key** ให้เก็บใน `.env` ซึ่งอยู่ใน `.gitignore` แล้ว
+- **ล้าง output ของ notebook ที่ใหญ่มากก่อน commit** (Kernel → Restart & Clear Output) เพื่อให้ repo ไม่บวม
+- คำเตือน `LF will be replaced by CRLF` บน Windows เป็นเรื่องปกติ ไม่กระทบเนื้อหาไฟล์
 
 ---
 
