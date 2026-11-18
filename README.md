@@ -202,7 +202,8 @@ conda env export --no-builds > environment.yml
 SC-677-704-Advanced-Data-Analytics/
 ├── README.md
 ├── .gitignore
-├── SC677704_Course_Specification.pdf   # รายละเอียดรายวิชา (มคอ.3)
+├── docs/                               # เอกสารประกอบรายวิชา
+│   └── SC677704_Course_Specification.pdf
 ├── labs/                               # งานปฏิบัติการ L1–L7
 │   ├── L1-data-pipeline/
 │   ├── L2-big-data-spark/
@@ -219,7 +220,7 @@ SC-677-704-Advanced-Data-Analytics/
 
 | ไฟล์ / โฟลเดอร์ | คำอธิบาย |
 | --- | --- |
-| [SC677704_Course_Specification.pdf](SC677704_Course_Specification.pdf) | เอกสาร Course Specification ฉบับเต็ม |
+| [`docs/`](docs) | เอกสารประกอบรายวิชา เช่น [Course Specification (มคอ.3)](docs/SC677704_Course_Specification.pdf) และสไลด์ประกอบการสอน |
 | [`labs/`](labs) | โค้ดและ notebook ของงานปฏิบัติการแต่ละครั้ง แยกโฟลเดอร์ตามรหัสงาน |
 | [`self-study-bi/`](self-study-bi) | สไลด์และไฟล์สาธิตเครื่องมือ BI ที่ได้รับมอบหมาย |
 | [`dashboard-mini-project/`](dashboard-mini-project) | ไฟล์แดชบอร์ดและสรุปข้อเสนอแนะแก่ผู้ใช้ข้อมูล |
