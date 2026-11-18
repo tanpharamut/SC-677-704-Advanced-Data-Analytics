@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (keep folder, ignore contents)
+data/*
+!data/.gitkeep
+*.parquet
+*.db
+*.sqlite
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Airflow
+airflow.db
+airflow-webserver.pid
+logs/
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Models
+*.h5
+*.keras
+*.pkl
+*.joblib
+
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+~$*
