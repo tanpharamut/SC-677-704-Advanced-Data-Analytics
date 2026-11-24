@@ -4,7 +4,7 @@
 
 ### การวิเคราะห์ข้อมูลขั้นสูง
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)
 ![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?logo=apacheairflow&logoColor=white)
 ![Apache Spark](https://img.shields.io/badge/Apache%20Spark-E25A1C?logo=apachespark&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white)
@@ -20,17 +20,31 @@
 
 ## สารบัญ
 
+- [ข้อมูลโปรเจกต์และผู้จัดทำ](#ข้อมูลโปรเจกต์และผู้จัดทำ)
 - [ข้อมูลรายวิชา](#ข้อมูลรายวิชา)
 - [เกี่ยวกับรายวิชา](#เกี่ยวกับรายวิชา)
 - [ผลลัพธ์การเรียนรู้](#ผลลัพธ์การเรียนรู้)
 - [แผนการเรียนรายสัปดาห์](#แผนการเรียนรายสัปดาห์)
 - [การประเมินผล](#การประเมินผล)
 - [สถานะงาน](#สถานะงาน)
-- [การติดตั้งสภาพแวดล้อม](#การติดตั้งสภาพแวดล้อม)
+- [การติดตั้งและตั้งค่าสภาพแวดล้อม](#การติดตั้งและตั้งค่าสภาพแวดล้อม)
+- [คำสั่ง venv และ pip](#คำสั่ง-venv-และ-pip)
 - [โครงสร้าง Repository](#โครงสร้าง-repository)
 - [การใช้งาน Git](#การใช้งาน-git)
 - [ตำราและแหล่งอ้างอิง](#ตำราและแหล่งอ้างอิง)
 - [นโยบายการใช้เครื่องมือ AI](#นโยบายการใช้เครื่องมือ-ai)
+
+---
+
+## ข้อมูลโปรเจกต์และผู้จัดทำ
+
+| หัวข้อ | รายละเอียด |
+| --- | --- |
+| **ชื่อโปรเจกต์** | SC-677-704-Advanced-Data-Analytics · คลังงานรายวิชาการวิเคราะห์ข้อมูลขั้นสูง |
+| **รายวิชา** | SC 677 704 การวิเคราะห์ข้อมูลขั้นสูง (Advanced Data Analytics) |
+| **ผู้จัดทำ** | `<ชื่อ-นามสกุล>` |
+| **รหัสนักศึกษา** | `<รหัสนักศึกษา>` |
+| **GitHub** | [tanpharamut](https://github.com/tanpharamut) |
 
 ---
 
@@ -40,6 +54,7 @@
 | --- | --- |
 | **รหัสและชื่อวิชา** | SC 677 704 การวิเคราะห์ข้อมูลขั้นสูง (Advanced Data Analytics) |
 | **หน่วยกิต** | 3(2-2-5) บรรยาย 2 ชม. · ปฏิบัติการ 2 ชม. · ศึกษาด้วยตนเอง 5 ชม. ต่อสัปดาห์ |
+| **ภาคการศึกษา** | ภาคต้น ปีการศึกษา 2569 |
 | **อาจารย์ผู้รับผิดชอบและผู้สอน** | ผศ.ดร.เปรม จันทร์สว่าง |
 | **วันและเวลา** | พุธ และ ศุกร์ 10:00–12:00 น. |
 | **สถานที่** | ห้องบรรยายและห้องปฏิบัติการคอมพิวเตอร์ ภาควิชาสถิติ คณะวิทยาศาสตร์ |
@@ -153,6 +168,7 @@ Data pipeline, big data analytics, unstructured data analysis, multivariate data
 
 **งานปฏิบัติการ**
 
+- [ ] Lab 01 ตั้งค่าสภาพแวดล้อม Python (venv) และ Git & GitHub
 - [ ] L1 สายท่อข้อมูล (Airflow)
 - [ ] L2 ข้อมูลมหัต (PySpark)
 - [ ] L3 ข้อมูลไม่มีโครงสร้างและหลายมิติ
@@ -171,28 +187,99 @@ Data pipeline, big data analytics, unstructured data analysis, multivariate data
 
 ---
 
-## การติดตั้งสภาพแวดล้อม
+## การติดตั้งและตั้งค่าสภาพแวดล้อม
 
-ซอฟต์แวร์ที่ใช้: Python 3.11+, Jupyter Notebook, Git, Apache Airflow, Apache Spark (PySpark), scikit-learn, TensorFlow/Keras, Matplotlib, Seaborn, Plotly, Flask, Streamlit, Dash และเครื่องมือ BI (Tableau, Power BI, Looker Studio)
+> **Installation & Setup Guide** ใช้ Python Virtual Environment (`venv`) แยกไลบรารีของ repo นี้ออกจาก Python หลักของเครื่อง
 
-สร้าง environment ด้วย Miniconda (เปิด **Anaconda Prompt** แล้วรันทีละบรรทัด):
+### ขั้นที่ 1 · ติดตั้ง Python และ Git
 
-```bash
-conda create -n ada704 python=3.11 -y
-conda activate ada704
-pip install numpy pandas scipy scikit-learn statsmodels jupyter requests sqlalchemy
-pip install pyspark nltk tensorflow matplotlib seaborn plotly flask streamlit dash
-```
-
-> **หมายเหตุ**
-> - **PySpark** ต้องติดตั้ง Java (JDK 17) และตั้งค่า `JAVA_HOME` ก่อนใช้งาน
-> - **Apache Airflow** ไม่รองรับ Windows โดยตรง ให้รันผ่าน WSL2 หรือ Docker ตาม [คู่มือของ Airflow](https://airflow.apache.org/docs/apache-airflow/stable/start.html)
-
-บันทึกสภาพแวดล้อมสำหรับแนบไปกับงาน:
+ดาวน์โหลดและติดตั้ง Python **3.12 ขึ้นไป** จาก [python.org](https://www.python.org/downloads/) และ Git จาก [git-scm.com](https://git-scm.com/downloads) แล้วตรวจสอบเวอร์ชัน:
 
 ```bash
-conda env export --no-builds > environment.yml
+python --version    # macOS / Linux ใช้ python3 --version
+git --version
 ```
+
+> - ตอนติดตั้ง Python บน Windows ให้ติ๊ก **Add python.exe to PATH**
+> - `requirements.txt` ล็อก numpy 2.5 ซึ่งต้องใช้ Python 3.12 ขึ้นไป (ทดสอบแล้วกับ Python 3.13)
+
+### ขั้นที่ 2 · Clone โปรเจกต์ลงเครื่อง
+
+```bash
+git clone https://github.com/tanpharamut/SC-677-704-Advanced-Data-Analytics.git
+cd SC-677-704-Advanced-Data-Analytics
+```
+
+### ขั้นที่ 3 · สร้างและเปิดใช้งาน venv
+
+สร้าง virtual environment ชื่อ `.venv` ในโฟลเดอร์โปรเจกต์:
+
+```bash
+python -m venv .venv     # Windows
+python3 -m venv .venv    # macOS / Linux
+```
+
+เปิดใช้งาน (activate) ตามโปรแกรมที่ใช้:
+
+| โปรแกรม | คำสั่งเปิดใช้งาน |
+| --- | --- |
+| Windows · Command Prompt | `.venv\Scripts\activate` |
+| Windows · PowerShell | `.venv\Scripts\Activate.ps1` |
+| Windows · Git Bash | `source .venv/Scripts/activate` |
+| macOS / Linux | `source .venv/bin/activate` |
+
+เปิดสำเร็จเมื่อมี `(.venv)` ขึ้นหน้าบรรทัดคำสั่ง
+
+> ถ้า PowerShell ขึ้นข้อความ *running scripts is disabled on this system* ให้รันคำสั่งด้านล่างครั้งเดียว แล้ว activate ใหม่
+>
+> ```powershell
+> Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+> ```
+
+### ขั้นที่ 4 · ติดตั้งไลบรารีจาก requirements.txt
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+ตรวจว่าติดตั้งครบ แล้วเปิด Jupyter Notebook:
+
+```bash
+python -c "import pandas, numpy, requests; print('OK', pandas.__version__, numpy.__version__)"
+jupyter notebook
+```
+
+### หมายเหตุสำหรับแล็บถัดไป
+
+- ติดตั้งแพ็กเกจเพิ่มเมื่อไร ให้รัน `pip freeze > requirements.txt` ใหม่แล้ว commit ไฟล์นี้ด้วยทุกครั้ง
+- หลัง freeze บน Windows ให้เติมเงื่อนไขท้าย 2 บรรทัดนี้ เพื่อให้ macOS / Linux ติดตั้งได้ (ทั้งสองเป็นแพ็กเกจเฉพาะ Windows)
+  ```text
+  colorama==0.4.6; sys_platform == "win32"
+  pywinpty==3.1.2; os_name == "nt"
+  ```
+- **PySpark** ต้องติดตั้ง Java (JDK 17) และตั้งค่า `JAVA_HOME` ก่อนใช้งาน
+- **Apache Airflow** ไม่รองรับ Windows โดยตรง ให้รันผ่าน WSL2 หรือ Docker ตาม [คู่มือของ Airflow](https://airflow.apache.org/docs/apache-airflow/stable/start.html)
+
+---
+
+## คำสั่ง venv และ pip
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `python -m venv .venv` | สร้าง virtual environment ชื่อ `.venv` คือ Python ชุดแยกที่มีไลบรารีของ repo นี้เท่านั้น ไม่ปนกับโปรเจกต์อื่นในเครื่อง |
+| `.venv\Scripts\activate` (Windows)<br>`source .venv/bin/activate` (macOS / Linux) | เปิดใช้งาน venv หลังจากนี้คำสั่ง `python` และ `pip` จะใช้ตัวที่อยู่ใน `.venv` |
+| `deactivate` | ปิด venv กลับไปใช้ Python หลักของเครื่อง |
+| `python -m pip install --upgrade pip` | อัปเกรด pip เป็นเวอร์ชันล่าสุด (บน Windows ต้องเรียกผ่าน `python -m pip` เพราะ pip แก้ไฟล์ตัวเองขณะทำงานไม่ได้) |
+| `pip install <แพ็กเกจ>` | ติดตั้งแพ็กเกจจาก PyPI เช่น `pip install pandas numpy requests jupyter` |
+| `pip install <แพ็กเกจ>==<เวอร์ชัน>` | ติดตั้งแพ็กเกจเวอร์ชันที่ระบุ |
+| `pip uninstall <แพ็กเกจ>` | ถอนการติดตั้งแพ็กเกจ |
+| `pip list` | แสดงแพ็กเกจทั้งหมดที่ติดตั้งใน venv พร้อมเวอร์ชัน |
+| `pip show <แพ็กเกจ>` | ดูรายละเอียดของแพ็กเกจ เช่น เวอร์ชัน ตำแหน่งที่ติดตั้ง และแพ็กเกจที่ต้องใช้ร่วมกัน |
+| `pip freeze > requirements.txt` | ส่งออกรายชื่อแพ็กเกจในรูป `ชื่อ==เวอร์ชัน` ลงไฟล์ เพื่อให้เครื่องอื่นสร้างสภาพแวดล้อมเดียวกันได้ |
+| `pip install -r requirements.txt` | ติดตั้งแพ็กเกจทุกตัวตามเวอร์ชันในไฟล์ ใช้หลัง clone repo ลงเครื่องใหม่ |
+
+> **ทำไมไม่ commit โฟลเดอร์ `.venv`** เพราะมีขนาดใหญ่และผูกกับเครื่องและระบบปฏิบัติการที่สร้าง จึงใส่ไว้ใน `.gitignore` แล้ว commit เฉพาะ `requirements.txt` ซึ่งใช้สร้าง venv ขึ้นใหม่ได้ทุกเครื่อง
 
 ---
 
@@ -202,9 +289,12 @@ conda env export --no-builds > environment.yml
 SC-677-704-Advanced-Data-Analytics/
 ├── README.md
 ├── .gitignore
+├── requirements.txt                    # รายชื่อไลบรารี Python (pip freeze)
+├── .venv/                              # virtual environment (ไม่ถูก track)
 ├── docs/                               # เอกสารประกอบรายวิชา
 │   └── SC677704_Course_Specification.pdf
-├── labs/                               # งานปฏิบัติการ L1–L7
+├── labs/                               # งานปฏิบัติการ
+│   ├── Lab01-python-venv-git-setup/    # ใบงาน Lab 01
 │   ├── L1-data-pipeline/
 │   ├── L2-big-data-spark/
 │   ├── L3-unstructured-multivariate/
@@ -221,7 +311,9 @@ SC-677-704-Advanced-Data-Analytics/
 | ไฟล์ / โฟลเดอร์ | คำอธิบาย |
 | --- | --- |
 | [`docs/`](docs) | เอกสารประกอบรายวิชา เช่น [Course Specification (มคอ.3)](docs/SC677704_Course_Specification.pdf) และสไลด์ประกอบการสอน |
-| [`labs/`](labs) | โค้ดและ notebook ของงานปฏิบัติการแต่ละครั้ง แยกโฟลเดอร์ตามรหัสงาน |
+| [`requirements.txt`](requirements.txt) | รายชื่อและเวอร์ชันของไลบรารี Python ที่ใช้ ติดตั้งด้วย `pip install -r requirements.txt` |
+| [`labs/Lab01-python-venv-git-setup/`](labs/Lab01-python-venv-git-setup) | ใบงาน Lab 01 การตั้งค่า venv และ Git & GitHub (ผลงานคือ `README.md`, `.gitignore` และ `requirements.txt` ที่ราก repo) |
+| [`labs/`](labs) | โค้ดและ notebook ของงานปฏิบัติการ L1–L7 แยกโฟลเดอร์ตามรหัสงานใน Course Specification |
 | [`self-study-bi/`](self-study-bi) | สไลด์และไฟล์สาธิตเครื่องมือ BI ที่ได้รับมอบหมาย |
 | [`dashboard-mini-project/`](dashboard-mini-project) | ไฟล์แดชบอร์ดและสรุปข้อเสนอแนะแก่ผู้ใช้ข้อมูล |
 | [`final-project/`](final-project) | โค้ด รายงาน และสไลด์ของโครงงานประจำวิชา |
@@ -262,7 +354,28 @@ git config --global user.email "you@example.com"
 | `git config --global user.email "..."` | ตั้งอีเมลผู้เขียน ควรตรงกับอีเมลบัญชี GitHub เพื่อให้ commit ผูกกับบัญชี |
 | `git config --list` | ดูค่าที่ตั้งไว้ทั้งหมด |
 
-### 2. ดึง repo ลงเครื่อง
+### 2. สร้าง repo ใหม่และอัปโหลดขึ้น GitHub
+
+ใช้เมื่อมีโฟลเดอร์งานในเครื่องอยู่แล้ว ให้สร้าง **New repository** เปล่าบน GitHub ก่อน (ไม่ต้องติ๊กเพิ่ม README หรือ .gitignore บนเว็บ) แล้วรันตามลำดับ:
+
+```bash
+git init                         # 1. เริ่มใช้ Git ในโฟลเดอร์โปรเจกต์
+git status                       # 2. ตรวจสถานะไฟล์ ต้องไม่เห็นโฟลเดอร์ .venv
+git add .                        # 3. เพิ่มไฟล์ทั้งหมดเข้า staging area
+git commit -m "Initial commit"   # 4. บันทึก commit แรก
+git branch -M main               # 5. ตั้งชื่อ branch หลักเป็น main
+git remote add origin https://github.com/<username>/<repo>.git   # 6. เชื่อมกับ repo บน GitHub
+git push -u origin main          # 7. อัปโหลดขึ้น GitHub
+```
+
+| คำสั่ง | ใช้ทำอะไร |
+| --- | --- |
+| `git init` | สร้าง Git repository ใหม่ในโฟลเดอร์ปัจจุบัน โดยสร้างโฟลเดอร์ซ่อน `.git` ไว้เก็บประวัติทั้งหมด |
+| `git branch -M main` | เปลี่ยนชื่อ branch ปัจจุบันเป็น `main` (`-M` คือบังคับเปลี่ยน แม้มี branch ชื่อนี้อยู่แล้ว) |
+| `git remote add origin <url>` | ผูก repo ในเครื่องเข้ากับ repo บน GitHub โดยตั้งชื่อเรียกว่า `origin` |
+| `git push -u origin main` | อัปโหลด branch `main` ขึ้น `origin` ครั้งแรก `-u` ให้ Git จำคู่นี้ไว้ ครั้งต่อไปพิมพ์แค่ `git push` หรือ `git pull` |
+
+### 3. ดึง repo ลงเครื่อง
 
 ```bash
 git clone https://github.com/tanpharamut/SC-677-704-Advanced-Data-Analytics.git
@@ -273,7 +386,7 @@ cd SC-677-704-Advanced-Data-Analytics
 
 > repo นี้เป็น private ต้องล็อกอิน GitHub ก่อน ด้วย `gh auth login` หรือผ่านหน้าต่าง Git Credential Manager ที่เด้งขึ้นมาตอน clone
 
-### 3. ทำงานประจำวัน
+### 4. ทำงานประจำวัน
 
 ```bash
 git pull                                   # 1. ดึงงานล่าสุดจาก GitHub
@@ -294,7 +407,7 @@ git push                                   # 5. ส่งขึ้น GitHub
 | `git commit -m "ข้อความ"` | บันทึกสิ่งที่อยู่ใน staging เป็น commit ใหม่ในเครื่อง พร้อมข้อความอธิบาย |
 | `git push` | ส่ง commit ในเครื่องขึ้น GitHub |
 
-### 4. ดูประวัติ
+### 5. ดูประวัติ
 
 | คำสั่ง | ใช้ทำอะไร |
 | --- | --- |
@@ -303,7 +416,7 @@ git push                                   # 5. ส่งขึ้น GitHub
 | `git log -- <ไฟล์>` | ดูเฉพาะ commit ที่แก้ไขไฟล์นั้น |
 | `git show <hash>` | ดูรายละเอียดและสิ่งที่เปลี่ยนใน commit นั้น (`<hash>` คือรหัส commit เช่น `0345632`) |
 
-### 5. จัดการไฟล์
+### 6. จัดการไฟล์
 
 | คำสั่ง | ใช้ทำอะไร |
 | --- | --- |
@@ -311,7 +424,7 @@ git push                                   # 5. ส่งขึ้น GitHub
 | `git rm <ไฟล์>` | ลบไฟล์ออกจากเครื่องและจาก repo ใน commit ถัดไป |
 | `git rm --cached <ไฟล์>` | เลิกติดตามไฟล์ใน repo แต่ยังเก็บไฟล์ไว้ในเครื่อง ใช้เมื่อเผลอ commit ไฟล์ที่ควรอยู่ใน `.gitignore` |
 
-### 6. ยกเลิกและแก้ไข
+### 7. ยกเลิกและแก้ไข
 
 | คำสั่ง | ใช้ทำอะไร |
 | --- | --- |
@@ -322,7 +435,7 @@ git push                                   # 5. ส่งขึ้น GitHub
 | `git revert <hash>` | สร้าง commit ใหม่ที่ย้อนผลของ commit นั้น เป็นวิธีที่ปลอดภัยสำหรับ commit ที่ push แล้ว |
 
 <details>
-<summary><b>7. Branch</b> แยกทดลองงานโดยไม่กระทบ <code>main</code></summary>
+<summary><b>8. Branch</b> แยกทดลองงานโดยไม่กระทบ <code>main</code></summary>
 <br>
 
 | คำสั่ง | ใช้ทำอะไร |
@@ -337,7 +450,7 @@ git push                                   # 5. ส่งขึ้น GitHub
 </details>
 
 <details>
-<summary><b>8. Stash และ Remote</b> พักงานชั่วคราว และดูการเชื่อมต่อกับ GitHub</summary>
+<summary><b>9. Stash และ Remote</b> พักงานชั่วคราว และดูการเชื่อมต่อกับ GitHub</summary>
 <br>
 
 | คำสั่ง | ใช้ทำอะไร |
