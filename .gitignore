@@ -1,16 +1,21 @@
-# Python
+# Python Virtual Environment
+.venv/
+venv/
+env/
+
+# Python Bytecode & Cache
 __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
 
-# Virtual environments
-.venv/
-venv/
-env/
-
-# Jupyter
+# Jupyter Notebook Checkpoints
 .ipynb_checkpoints/
+
+# OS Specific files
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # Data (keep folder, ignore contents)
 data/*
@@ -39,10 +44,7 @@ logs/
 *.pkl
 *.joblib
 
-# OS / editors
-.DS_Store
-Thumbs.db
-desktop.ini
+# Editors / Office temp files
 .vscode/
 .idea/
 ~$*
