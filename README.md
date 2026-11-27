@@ -168,7 +168,7 @@ Data pipeline, big data analytics, unstructured data analysis, multivariate data
 
 **งานปฏิบัติการ**
 
-- [ ] Lab 01 ตั้งค่าสภาพแวดล้อม Python (venv) และ Git & GitHub
+- [x] Lab 01 ตั้งค่าสภาพแวดล้อม Python (venv) และ Git & GitHub
 - [ ] L1 สายท่อข้อมูล (Airflow)
 - [ ] L2 ข้อมูลมหัต (PySpark)
 - [ ] L3 ข้อมูลไม่มีโครงสร้างและหลายมิติ
