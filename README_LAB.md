@@ -4,12 +4,12 @@
 
 - Create python env:
 
-`python -m venv .venv`
+    `python -m venv .venv`
 
-``` python 
-import pandas
-print('Hello world')
-```
+    ``` python 
+    import pandas
+    print('Hello world')
+    ```
 
 
 
